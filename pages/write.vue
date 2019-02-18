@@ -20,7 +20,7 @@
            
         </el-form>
 
-         <mavon-editor :toolbars="markdownOption" :ishljs = "true" v-model="handbook" class="editor"/>
+        <mavon-editor :toolbars="markdownOption" :ishljs = "true" v-model="handbook" class="editor"/>
 
         <!-- 文章发布页面 -->
         <el-dialog class="login-frame"   title="文章发布" :close-on-click-modal="false" :close-on-press-escape="false" :show-close="false" :center="true" :visible.sync="dialogArticleVisible">

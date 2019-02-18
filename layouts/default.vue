@@ -141,11 +141,9 @@ html {
     color: #DA9011;
 }
 .blog-nav-item:hover{
-  // background: #ccc;
+  background: #ccc;
   border-radius: 3px;
   cursor: pointer;
-
-
 }
 .blog-fixed{
   position: fixed;

@@ -29,6 +29,24 @@ module.exports = {
     { src: "~plugins/vue-markdown.js", ssr: false },
     { src: '~plugins/element-ui'}
   ],
+  modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/proxy'
+  ],
+  axios: {
+    proxy: true,
+    prefix: '/api', // baseURL
+    credentials: true,
+  },
+  proxy: {
+    '/api': {
+      target: 'http://localhost:8888', // 代理地址
+      changeOrigin: true,
+      pathRewrite: {
+        '^/api': '/', //将 /api 替换掉
+      },
+    },
+  },
   build: {
     /*
     ** Run ESLint on save
