@@ -9,7 +9,7 @@
       >新增标签</el-button>
     </div>
     <!-- 表格组件 -->
-    <el-table :data="pageModel.tableData" style="width: 100%"  v-cloak>
+    <el-table :data="pageModel.tableData" style="width: 100%">
       <el-table-column v-if="false" label="id" prop="id" width="180"></el-table-column>
       <el-table-column label="标签" prop="name" width="180"></el-table-column>
       <el-table-column label="操作">
@@ -73,9 +73,8 @@
 </template>
 
 <script>
-import axios from "~/plugins/axios.js";
-import _axios from "axios";
-import Qs from "qs";
+import axios from "~/plugins/axios.js"
+import Qs from "qs"
 export default {
   data() {
     return {
@@ -94,7 +93,7 @@ export default {
         id: "",
         name: ""
       }
-    };
+    }
   },
   async asyncData({ $axios }) {
     let pageModel = {
@@ -108,72 +107,72 @@ export default {
       url: "/labelRest/list",
       data : Qs.stringify(pageModel)
     }).then(function(response) {
-      return { pageModel: response.data };
-    });
+      return { pageModel: response.data }
+    })
   },
 
   methods: {
     addSignHanldle() {
       //新增方法
-      this.saveLabelVisible = true;
+      this.saveLabelVisible = true
     },
 
     handleCurrentChange(val) {
       this.pageModel.currentPage = val
-      this.refreshPage();
+      this.refreshPage()
     },
     handleSizeChange(val) {
       this.pageModel.currentPage = 1
       this.pageModel.pageSize = val
-      this.refreshPage();
+      this.refreshPage()
     },
     saveArticle() {
       //新增后台交互
-      let saveLabel = Qs.stringify(this.saveLabel);
-      console.log("saveLabel", saveLabel);
+      let saveLabel = Qs.stringify(this.saveLabel)
+      console.log("saveLabel", saveLabel)
       this.$axios({
         method: "post",
         url: "/labelRest/saveOrUpdate",
         data: saveLabel
       }).then(res => {
-        this.refreshPage();
-        this.$message(res.data.alertMessage);
-      });
+        this.refreshPage()
+        this.$message(res.data.alertMessage)
+      })
 
-      this.saveLabelVisible = false;
+      this.saveLabelVisible = false
     },
     updateArticle() {
       //编辑后台交互
-      let updateLabel = Qs.stringify(this.updateLabel);
+      let updateLabel = Qs.stringify(this.updateLabel)
       this.$axios({
         method: "post",
         url: "/labelRest/saveOrUpdate",
         data: updateLabel
       }).then(res => {
-        this.refreshPage();
-        this.$message(res.data.alertMessage);
-      });
-      this.updateLabelVisible = false;
+        this.refreshPage()
+        this.$message(res.data.alertMessage)
+      })
+      this.updateLabelVisible = false
     },
     handleEdit(index, row) {
       //编辑方法
-      this.updateLabel.id = row.id;
-      this.updateLabel.name = row.name;
-      this.updateLabelVisible = true;
+      this.updateLabel.id = row.id
+      this.updateLabel.name = row.name
+      this.updateLabelVisible = true
     },
     handleDelete(index, row) {
       //删除方法
       let id = Qs.stringify({
         id: row.id
-      });
+      })
       this.$axios({
         method: "post",
         url: "/labelRest/delete",
         data: id
       }).then(res => {
-        this.refreshPage();
-        this.$message(res.data.alertMessage);
-      });
+        this.refreshPage()
+        this.$message(res.data.alertMessage)
+      })
     },
     refreshPage() {
       //页面刷新方法
@@ -188,18 +187,15 @@ export default {
         url: "/labelRest/list",
         data : Qs.stringify(pageModel)
       }).then(res => {
-        this.pageModel = res.data;
-      });
+        this.pageModel = res.data
+      })
     }
   }
-};
+}
 </script>
 
 <style>
 .table-toolbar .el-button {
-  margin: 10px;
-}
-[v-cloak] {
-    display: none !important;
+  margin: 10px
 }
 </style>
