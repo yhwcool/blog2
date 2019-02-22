@@ -4,7 +4,7 @@
               <el-button @click="addArticle()" type="primary" class="el-icon-circle-plus-outline" size="medium">新增文章</el-button>
         </div>     
         <el-table
-        :data="tableData"
+        :data="pageModel.tableData"
         style="width: 100%">
             <el-table-column v-if="false" label="id" prop="id" width="180"></el-table-column>
             <el-table-column
@@ -15,11 +15,11 @@
             <el-table-column
             label="分类名称"
             prop="type"
-            width="180">
+            width="160">
             </el-table-column>
             <el-table-column
             label="发表时间"
-            width="180">
+            width="190">
             <template slot-scope="scope">
                 <i class="el-icon-time"></i>
                 <span style="margin-left: 10px">{{ scope.row.createDate }}</span>
@@ -29,9 +29,9 @@
             <el-table-column
             label="标签"
             width="300">
-            <template>
-                <el-tag>标签一</el-tag>
-                <el-tag type="success">标签二</el-tag>
+            <template slot-scope="scope">
+                <el-tag>{{JSON.parse( scope.row.labelNames )[0]}}</el-tag>
+                <el-tag type="success">{{JSON.parse( scope.row.labelNames )[1]}}</el-tag>
             </template>
             </el-table-column>
             <el-table-column
@@ -62,51 +62,46 @@
             <el-pagination
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
-            :current-page="currentPage4"
-            :page-sizes="[100, 200, 300, 400]"
-            :page-size="100"
+            :current-page="pageModel.currentPage"
+            :page-sizes="[5, 10, 20, 50]"
+            :page-size="pageModel.pageSize"
             layout="total, sizes, prev, pager, next, jumper"
-            :total="400">
+            :total="pageModel.total">
             </el-pagination>
         </div>
     </div>
 </template>
 <script>
+import axios from "~/plugins/axios.js"
+import Qs from "qs"
 export default {
     name: 'admin-article',
     data() {
         return {
             currentPage4: 1,
-             tableData: [{
-                id:1,
-                labelNames:"标签一,标签二",
-                title: 'java测试啊啊啊',
-                createDate: '2016-05-02',
-                type: 'java的编程思想',
-                viewCount: 12
-            }, {
-                id:1,
-                labelNames:"标签一,标签二",
-                title: 'java测试啊啊啊',
-                createDate: '2016-05-04',
-                type: '王小虎',
-                viewCount: 14
-            }, {
-                id:1,
-                labelNames:"标签一,标签二",
-                title: 'java测试啊啊啊',
-                createDate: '2016-05-01',
-                type: '王小虎',
-                viewCount: 16
-            }, {
-                id:1,
-                labelNames:"标签一,标签二",
-                title: 'java测试啊啊啊',
-                createDate: '2016-05-03',
-                type: '王小虎',
-                viewCount: 20
-            }]
+            pageModel: {
+                currentPage: 1,
+                total : 10,
+                pageSize : 5,
+                tableData: []
+            },
+            labels:["标签1","标签2"]
         }
+    },
+    async asyncData({ $axios }) {
+        let pageModel = {
+            currentPage: 1,
+            total : 10,
+            pageSize : 5,
+            tableData: []
+        }
+        return $axios({
+        method: "post",
+        url: "/infoRest/list",
+        data : Qs.stringify(pageModel)
+        }).then(function(response) {
+        return { pageModel: response.data }
+        })
     },
     methods: {
       handleEdit(index, row) {

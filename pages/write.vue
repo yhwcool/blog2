@@ -11,7 +11,7 @@
         <el-col :span="12">
           <div class="grid-content" style="text-align:right;">
             <el-form-item>
-              <el-input placeholder="标题" width="400px" v-model="form.title"></el-input>
+              <el-input placeholder="标题" width="400px" v-model="articleInfo.title"></el-input>
             </el-form-item>
             <el-button type="danger" style="margin-right:20px;" @click="productArticle()">发布文章</el-button>
           </div>
@@ -56,8 +56,6 @@
   export default {
     data() {
       return {
-        form: {},
-        article: {},
         articleInfo: {},
         labels: [],
         types: [],
