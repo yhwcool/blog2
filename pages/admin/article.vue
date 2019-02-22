@@ -6,9 +6,15 @@
         <el-table
         :data="tableData"
         style="width: 100%">
+            <el-table-column v-if="false" label="id" prop="id" width="180"></el-table-column>
+            <el-table-column
+            label="文章标题"
+            prop="title"
+            width="180">
+            </el-table-column>
             <el-table-column
             label="分类名称"
-            prop="name"
+            prop="type"
             width="180">
             </el-table-column>
             <el-table-column
@@ -16,14 +22,14 @@
             width="180">
             <template slot-scope="scope">
                 <i class="el-icon-time"></i>
-                <span style="margin-left: 10px">{{ scope.row.date }}</span>
+                <span style="margin-left: 10px">{{ scope.row.createDate }}</span>
             </template>
             </el-table-column>
 
             <el-table-column
             label="标签"
             width="300">
-            <template slot-scope="scope">
+            <template>
                 <el-tag>标签一</el-tag>
                 <el-tag type="success">标签二</el-tag>
             </template>
@@ -32,11 +38,15 @@
             label="点击数"
             width="180">
             <template slot-scope="scope">
-                <span style="margin-left: 10px">{{ scope.row.num }}</span>
+                <span style="margin-left: 10px">{{ scope.row.viewCount }}</span>
             </template>
             </el-table-column>
             <el-table-column label="操作">
             <template slot-scope="scope">
+                <el-button
+                size="mini"
+                type="primary"
+                @click="handleRead(scope.$index, scope.row)">查看</el-button>
                 <el-button
                 size="mini"
                 @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
@@ -68,25 +78,33 @@ export default {
         return {
             currentPage4: 1,
              tableData: [{
-                date: '2016-05-02',
-                name: 'java的编程思想',
-                num: 12,
-                address: '上海市普陀区金沙江路 1518 弄'
+                id:1,
+                labelNames:"标签一,标签二",
+                title: 'java测试啊啊啊',
+                createDate: '2016-05-02',
+                type: 'java的编程思想',
+                viewCount: 12
             }, {
-                date: '2016-05-04',
-                name: '王小虎',
-                num: 14,
-                address: '上海市普陀区金沙江路 1517 弄'
+                id:1,
+                labelNames:"标签一,标签二",
+                title: 'java测试啊啊啊',
+                createDate: '2016-05-04',
+                type: '王小虎',
+                viewCount: 14
             }, {
-                date: '2016-05-01',
-                name: '王小虎',
-                num: 16,
-                address: '上海市普陀区金沙江路 1519 弄'
+                id:1,
+                labelNames:"标签一,标签二",
+                title: 'java测试啊啊啊',
+                createDate: '2016-05-01',
+                type: '王小虎',
+                viewCount: 16
             }, {
-                date: '2016-05-03',
-                name: '王小虎',
-                num: 20,
-                address: '上海市普陀区金沙江路 1516 弄'
+                id:1,
+                labelNames:"标签一,标签二",
+                title: 'java测试啊啊啊',
+                createDate: '2016-05-03',
+                type: '王小虎',
+                viewCount: 20
             }]
         }
     },

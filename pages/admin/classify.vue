@@ -87,7 +87,8 @@ export default {
       saveTypeVisible: false,
       updateTypeVisible: false,
       saveType: {
-        saveType: ""
+        id: "",
+        name: ""
       },
       updateType: {
         id: "",

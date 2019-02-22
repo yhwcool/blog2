@@ -87,7 +87,8 @@ export default {
       saveLabelVisible: false,
       updateLabelVisible: false,
       saveLabel: {
-        saveLabel: ""
+        id: "",
+        name: ""
       },
       updateLabel: {
         id: "",
