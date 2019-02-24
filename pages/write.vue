@@ -1,6 +1,6 @@
 <template>
   <div id="article-write">
-    <el-form class="form-toolbar" ref="form" :inline="true" :model="form">
+    <el-form class="form-toolbar" :inline="true" :model="articleInfo">
       <el-row>
         <el-col :span="12">
           <div class="grid-content">
@@ -92,6 +92,12 @@
           preview: true, // 预览
         }
       }
+    },
+
+    created(){
+      console.log("created:",this.$route.query)
+      this.articleInfo = this.$route.query
+      console.log(this)
     },
     methods: {
       getTypes() {
