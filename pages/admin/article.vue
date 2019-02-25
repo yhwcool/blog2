@@ -11,28 +11,30 @@
       </el-table-column>
       <el-table-column label="发表时间" width="190">
         <template slot-scope="scope">
-          <i class="el-icon-time"></i>
-          <span style="margin-left: 10px">{{ scope.row.createDate }}</span>
-        </template>
+                <i class="el-icon-time"></i>
+                <span style="margin-left: 10px">{{ scope.row.createDate }}</span>
+</template>
       </el-table-column>
 
       <el-table-column label="标签" width="300">
-        <template slot-scope="scope">
-          <el-tag>{{JSON.parse( scope.row.labelNames )[0]}}</el-tag>
-          <el-tag type="success">{{JSON.parse( scope.row.labelNames )[1]}}</el-tag>
-        </template>
+<template slot-scope="scope">
+  <el-tag>
+    {{JSON.parse( scope.row.labelNames )[0]}}</el-tag>
+  <el-tag type="success">{{JSON.parse( scope.row.labelNames )[1]}}</el-tag>
+</template>
       </el-table-column>
       <el-table-column label="点击数" width="180">
-        <template slot-scope="scope">
-          <span style="margin-left: 10px">{{ scope.row.viewCount }}</span>
-        </template>
+<template slot-scope="scope">
+  <span style="margin-left: 10px">{{ scope.row.viewCount }}</span>
+</template>
       </el-table-column>
       <el-table-column label="操作">
-        <template slot-scope="scope">
-          <el-button size="mini" type="primary" @click="handleRead(scope.$index, scope.row)">查看</el-button>
-          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-          <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-        </template>
+<template slot-scope="scope">
+  <el-button size="mini" type="primary" @click="handleRead(scope.$index, scope.row)">
+    查看</el-button>
+  <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+  <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+</template>
       </el-table-column>
     </el-table>
 
@@ -74,28 +76,22 @@
         method: "post",
         url: "/infoRest/list",
         data: Qs.stringify(pageModel)
-      }).then(function (response) {
+      }).then(function(response) {
         return {
           pageModel: response.data
         }
       })
     },
     methods: {
-      handleCurrentChange() {
-
-      },
-      handleSizeChange() {
-
-      },
+      handleCurrentChange() {},
+      handleSizeChange() {},
       addArticle() {
-
         this.$router.push({
           path: '/write', //跳转路由
           query: { //参数对象
             name: "zhansan"
           }
-        });
-
+        })
       },
       handleRead(index, row) {
         //编辑方法
@@ -105,7 +101,6 @@
         })
       },
       handleEdit(index, row) {
-          console.log("pageModel:",this.pageModel)
         //编辑方法
         this.$router.push({
           path: '/write', //跳转路由
@@ -144,11 +139,9 @@
       }
     }
   }
-
 </script>
 <style>
   .table-toolbar .el-button {
     margin: 10px;
   }
-
 </style>

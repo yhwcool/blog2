@@ -94,11 +94,10 @@
       }
     },
 
-    created(){
-      console.log("created:",this.$route.query)
+    created() {
       this.articleInfo = this.$route.query
-      console.log(this)
     },
+    
     methods: {
       getTypes() {
           //获取分类下拉
