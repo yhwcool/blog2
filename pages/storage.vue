@@ -2,19 +2,19 @@
     <div class="container">
       <Header></Header>
       <timeline class="timeline">
-        <timeline-item bg-color="#90d8e0">一共{{pageModel.total}}篇</timeline-item>
+        <timeline-item bg-color="#90d8e0" style="color: #90d8e0">一共{{pageModel.total}}篇</timeline-item>
         
         <div
         v-for="(page, index) in pages"
         :key="index"
         >
-          <timeline-title>{{index}}</timeline-title>
+          <timeline-title style="color: #90d8e0">{{index}}</timeline-title>
           <timeline-item :hollow="true"
             v-for="(article, index) in page"
             :key="index"
           >
-            <h4>{{article.title}}</h4>
-            <span>{{article.createDate}}</span>
+            <h4 style="color: #333">{{article.title}}</h4>
+            <span style="color: #666">{{article.createDate}}</span>
           </timeline-item>
         </div>
       </timeline>
