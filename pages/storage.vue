@@ -55,9 +55,9 @@ export default {
         let tableData = response.data.tableData
         let pages = {}
         tableData.forEach(table => {
-          let date = table.createDate.substring(0,19);    
-          date = date.replace(/-/g,'/'); 
-          let timestamp = new Date(date).getTime();
+          let date = table.createDate.substring(0,19)
+          date = date.replace(/-/g,'/')
+          let timestamp = new Date(date).getTime()
           let d = new Date(timestamp)
           let year = d.getFullYear() //获取年份
           if(pages[year]){//根据年份分组

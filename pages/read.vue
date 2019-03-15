@@ -3,7 +3,7 @@
     <Header></Header>
     <div class="read-header">
       <div class="read-title">
-        <h1> Flink 小贴士 (7): 4个步骤，让 Flink 应用达到生产状态</h1>
+        <h1>{{articleInfo.title}}</h1>
       </div>
       <div>
         <span>发表于 {{articleInfo.updateDate}}</span> | <span>分类于 {{articleInfo.type}}</span> | <span> 阅读次数
@@ -12,8 +12,6 @@
     </div>
     <div class="read-content">
       <blockquote>
-        <p>原文：<a href="https://data-artisans.com/blog/4-steps-flink-application-production-ready" target="_blank" rel="external">https://data-artisans.com/blog/4-steps-flink-application-production-ready</a><br>作者：Nico
-          Kruber, Markos Sfikas<br>译者：云邪（Jark）</p>
       </blockquote>
       <mavon-editor
         class = "md"

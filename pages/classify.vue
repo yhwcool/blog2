@@ -50,8 +50,8 @@ export default {
         let tableData = response.data.tableData
         let pages = {}
         tableData.forEach(table => {
-          let type = table.type;    
-          if(pages[type]){//根据年份分组
+          let type = table.type
+          if(pages[type]){
             pages[type].push(table)
           }else {
             pages[type] = [table]
@@ -96,3 +96,4 @@ export default {
     text-align: left;
   }
 </style>
+
